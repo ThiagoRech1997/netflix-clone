@@ -67,5 +67,6 @@ export default {
                 default: info = null; break
             }
         }
+        return info
     }
 }

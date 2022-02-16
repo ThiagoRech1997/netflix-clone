@@ -1,5 +1,4 @@
 import React from 'react'
-import { render } from 'react-dom'
 import ReactAwesomePlayer from 'react-awesome-player'
 
 export default class Player extends React.Component {
@@ -19,7 +18,7 @@ export default class Player extends React.Component {
     }
   }
 
-  render () {
+  render() {
     const { options } = this.state
     return <div className="test-demo">
       <ReactAwesomePlayer options={options}/>

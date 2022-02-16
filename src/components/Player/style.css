@@ -1,0 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+/* Set Legend Collor to Yellow */
+.vjs-text-track-display > div > div.vjs-text-track-cue.vjs-text-track-cue-1 > div {
+    background-color: rgba(255, 255, 255, 0) !important;
+    font-family: 'Roboto', sans-serif !important;
+    color: yellow !important;
+    display: inline !important;
+    text-shadow: #000 0px 0px 1px !important;
+    -webkit-font-smoothing: antialiased !important;
+}

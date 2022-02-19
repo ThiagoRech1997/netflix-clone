@@ -1,12 +1,13 @@
 import React, { useState } from "react"
 import { NavigateBefore } from "@material-ui/icons"
 import { NavigateNext } from "@material-ui/icons"
+import { Link } from "react-router-dom"
 
 import './style.css'
 
-export default ({title, items}) => {
+export default function MovieRow({title, items}){
     const [scrollX, setScrollX] = useState(0)
-
+    
     const handleLeftArrow = () => {
         let x = scrollX + Math.round(window.innerWidth / 2)
         if(x > 0)
@@ -37,7 +38,9 @@ export default ({title, items}) => {
                 }}>
                     {items.results.length > 0 && items.results.map((item, key) =>(
                         <div key={key} className="movieRow--item">
-                            <img src={`https://image.tmdb.org/t/p/w300${item.poster_path}`} />
+                            <Link to={`/watch/info/${item.id}`}>
+                                <img src={`https://image.tmdb.org/t/p/w300${item.poster_path}`} alt={item.original_title}/>
+                            </Link>
                         </div>
                     ))}
                 </div>

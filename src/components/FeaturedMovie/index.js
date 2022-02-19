@@ -1,8 +1,9 @@
 import React from "react";
+import { Link } from "react-router-dom"
 
 import "./style.css"
 
-export default ({item}) => {
+export default function FeaturedMovie({item}){
     console.log(item)
 
     let firstDate = new Date(item.first_air_date)
@@ -32,7 +33,9 @@ export default ({item}) => {
                     </div>
                     <div className="featured--description">{description}</div>
                     <div className="featured--buttons">
-                        <a href={`/watch/${item.id}`} className="featured--watchbutton">Assistir</a>
+                        <Link to={`/watch/info/${item.id}`}>
+                            <a href="" className="featured--watchbutton">Assistir</a>
+                        </Link>
                         <a href={`/add/list/${item.id}`} className="featured--mylistbutton">+ Minha Lista</a>
                     </div>
                     <div className="featured--genres">

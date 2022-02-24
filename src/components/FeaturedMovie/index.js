@@ -33,7 +33,7 @@ export default function FeaturedMovie({item}){
                     </div>
                     <div className="featured--description">{description}</div>
                     <div className="featured--buttons">
-                        <Link to={`/watch/info/${item.id}`}>
+                        <Link to={`/watch/${item.id}/${item.original_title}`}>
                             <a href="" className="featured--watchbutton">Assistir</a>
                         </Link>
                         <a href={`/add/list/${item.id}`} className="featured--mylistbutton">+ Minha Lista</a>

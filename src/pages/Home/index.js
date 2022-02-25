@@ -1,7 +1,7 @@
 import React from "react";
 import { useEffect, useState } from "react";
 
-import tmdb from "./../../tmdb";
+import tmdb from "./../../services/tmdb";
 import MovieRow from "./../../components/MovieRow";
 import FeaturedMovie from "./../../components/FeaturedMovie";
 import Header from "./../../components/Header";

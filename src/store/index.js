@@ -1,8 +1,26 @@
-import { createStore } from "redux";
+import { applyMiddleware, createStore } from "redux";
+import thunkMiddleware from 'redux-thunk';
+import createLogger from 'redux-logger';
 import { reducers } from "./reducers";
 
-const store = createStore(
-    reducers
-);
-
-export default store;
+export default function configureStore(initialState = { friends: [] }) {
+    const logger = createLogger({
+      collapsed: true,
+      predicate: () =>
+      process.env.NODE_ENV === `development`, // eslint-disable-line no-unused-vars
+    });
+  
+    const middleware = applyMiddleware(thunkMiddleware, logger);
+  
+    const store = middleware(createStore)(reducers, initialState);
+  
+    if (module.hot) {
+      // Enable Webpack hot module replacement for reducers
+      module.hot.accept('./reducers', () => {
+        const nextRootReducer = require('./reducers').default;
+        store.replaceReducer(nextRootReducer);
+      });
+    }
+  
+    return store;
+  }

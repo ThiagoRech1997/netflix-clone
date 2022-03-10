@@ -1,7 +1,7 @@
 import { combineReducers } from "redux";
 
-import FriendListReducer from './FriendListReducer';
+import genresReducer from "./genresReducer"
 
 export const reducers = combineReducers({
-    friends: FriendListReducer
+    genres: genresReducer
 });

@@ -1,7 +1,9 @@
 import { combineReducers } from "redux";
 
-import genresReducer from "./genresReducer"
+import { mediaTypeReducer } from "./mediaTypeReducer"
+import { movieItemReducer } from "./movieReducer"
 
 export const reducers = combineReducers({
-    genres: genresReducer
+    mediaType: mediaTypeReducer,
+    movieItem: movieItemReducer
 });

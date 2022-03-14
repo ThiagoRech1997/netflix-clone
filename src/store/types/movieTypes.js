@@ -1,1 +1,3 @@
-export const ADD_GENRES = 'ADD_GENRES'
+export const ADD_MEDIA_TYPE = 'ADD_MEDIA_TYPE'
+export const ADD_MOVIE_ITEM = 'ADD_MOVIE_ITEM'
+export const GET_MOVIE_FAIL = 'GET_MOVIE_FAIL'

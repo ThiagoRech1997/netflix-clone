@@ -33,15 +33,12 @@ export default function Movie(){
     }, [])
 
     useEffect(()=>{
-        dispatch(handleMediaType(String(name)))
+        dispatch(handleMediaType(Number(id),String(name)))
         console.log("Tipo de Conteudo")
         console.log(midia)
-        dispatch(handleMovieItem(Number(id), String(midia)))
-        if((id !== movieInfo.id) || (movieInfo.success)){
-            dispatch(handleMovieItem(Number(id), String(midia)))
-            console.log("Dados da Midia")
-            console.log(movieInfo)
-        }
+        //dispatch(handleMovieItem(Number(id), String(midia)))
+        console.log("Dados da Midia")
+        console.log(movieInfo)
         //handleTorrentList()
         //handleSetGenresList()
     }, [dispatch, id])

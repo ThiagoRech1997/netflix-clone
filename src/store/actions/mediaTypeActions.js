@@ -1,6 +1,8 @@
 import { ADD_MEDIA_TYPE } from './../types/movieTypes'
 
-export const handleMediaType = (name) => (dispatch) => {
+import { handleMovieItem } from './movieActions'
+
+export const handleMediaType = (id, name) => (dispatch) => {
     dispatch({ type: ADD_MEDIA_TYPE })
 
     let mediaType
@@ -16,4 +18,5 @@ export const handleMediaType = (name) => (dispatch) => {
         payload: mediaType
     })
     
+    dispatch(handleMovieItem(Number(id), String(mediaType)))
 }

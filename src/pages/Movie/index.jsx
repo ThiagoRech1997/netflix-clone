@@ -4,8 +4,6 @@ import { useParams } from "react-router-dom"
 import Form from 'react-bootstrap/Form'
 import { Link } from "react-router-dom"
 
-import torrentApi from "./../../services/torrentApi"
-
 import "./style.css"
 import "bootstrap/dist/css/bootstrap.min.css"
 
@@ -37,13 +35,11 @@ export default function Movie(){
 
     useEffect(()=>{
         dispatch(handleMediaType(Number(id),String(name)))
-        console.log(movieInfo)
         handleSetGenresList()
     }, [dispatch, id])
 
     useEffect(() => {
-        console.log(torrents)
-        if (torrents?.length > 0) {
+        if (torrents.length > 0) {
             const data = torrents.map((item, index) => ({
                 key: index,
                 title: item.size + " " + item.seeds + " " + item.title,

@@ -12,8 +12,7 @@ export const movieItemReducer = (
             };
         case GET_MOVIE_FAIL:
             return{
-                ...state, 
-                loading: false, 
+                ...state,
                 message: action.payload.message
             }
         default:

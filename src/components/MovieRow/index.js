@@ -6,11 +6,15 @@ import { Link } from "react-router-dom"
 
 import './style.css'
 
-import { handleMediaType } from "../../store/actions/mediaTypeActions"
+import { resetStateTorrents } from './../../store/actions/torrentActions'
 
 export default function MovieRow({title, items}){
     const dispatch = useDispatch();
     const [scrollX, setScrollX] = useState(0)
+
+    useEffect(() => {
+        dispatch(resetStateTorrents())
+    }, [dispatch])
     
     const handleLeftArrow = () => {
         let x = scrollX + Math.round(window.innerWidth / 2)
@@ -45,7 +49,6 @@ export default function MovieRow({title, items}){
                             <Link to={`/watch/${item.id}/${item.original_title}`}>
                                 <img src={`https://image.tmdb.org/t/p/w300${item.poster_path}`} 
                                 alt={item.original_title} 
-                                //onClick={() => {dispatch(handleMediaType(Number(item.id),String(item.original_title)))}}
                                 />
                             </Link>
                         </div>

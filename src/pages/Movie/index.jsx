@@ -10,7 +10,7 @@ import "./style.css"
 import "bootstrap/dist/css/bootstrap.min.css"
 
 import { handleMediaType } from './../../store/actions/mediaTypeActions'
-import { handleMovieItem } from './../../store/actions/movieActions'
+import { getTorrent } from './../../store/actions/torrentActions'
 
 export default function Movie(){
     const { id, name } = useParams()
@@ -20,12 +20,13 @@ export default function Movie(){
     const [torrent, setTorrent] = useState("undefined");
     const [magnetLink, setMagnetLink] = useState({magnet: ""})
     let genres = []
-    let torrents = []
 
     const mediaType = useSelector((state) => state.mediaType)
     const { midia } = mediaType
     const movieItem = useSelector((state) => state.movieItem)
     const { movieInfo } = movieItem
+    const torrentList = useSelector((state) => state.torrentList)
+    const { torrents } = torrentList
     
 
     useEffect(() => {
@@ -34,15 +35,37 @@ export default function Movie(){
 
     useEffect(()=>{
         dispatch(handleMediaType(Number(id),String(name)))
-        console.log("Tipo de Conteudo")
-        console.log(midia)
-        //dispatch(handleMovieItem(Number(id), String(midia)))
-        console.log("Dados da Midia")
         console.log(movieInfo)
-        //handleTorrentList()
-        //handleSetGenresList()
+        handleSetGenresList()
     }, [dispatch, id])
 
+    useEffect(() => {
+        console.log(torrents)
+        if (torrents?.length > 0) {
+            const data = torrents.map((item, index) => ({
+                key: index,
+                title: item.size + " " + item.seeds + " " + item.title,
+                value: item.magnet,
+            }));
+            setOptions(data);
+            setTorrent(data[0].title)
+            setMagnetLink({ magnet: data[0].value })
+        }
+    }, [torrents])
+
+    function handleTorrentList(){
+        console.log(torrents)
+        if (torrents?.length > 0) {
+            const data = torrents.map((item, index) => ({
+                key: index,
+                title: item.size + " " + item.seeds + " " + item.title,
+                value: item.magnet,
+            }));
+            setOptions(data);
+            setTorrent(data[0].title)
+            setMagnetLink({ magnet: data[0].value })
+        }
+    }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
     function handleSetGenresList(){
@@ -51,29 +74,6 @@ export default function Movie(){
         }
     }
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    async function handleTorrentList(){
-        if(midia === "tv"){
-            let torrent = await torrentApi.get(`getTorrent?title=${movieInfo.original_name}&date=${movieInfo.first_air_date}`)
-            torrents = torrent.data.torrents
-        }
-        if(midia === "movie"){
-            let torrent = await torrentApi.get(`getTorrent?title=${movieInfo.original_title}&date=${movieInfo.release_date}`)
-            torrents = torrent.data.torrents
-        }
-        console.log(torrents)
-
-        if (torrents.length > 0) {
-            const data = torrents.map((item, index) => ({
-                key: index,
-                title: item.size + " " + item.seeds + " " + item.title,
-                value: item.link,
-            }));
-            setOptions(data);
-            setTorrent(data[0].title)
-            setMagnetLink({ magnet: data[0].value })
-        }
-    }
     async function onPlay(){
         for(let i in options){
             if(torrent === options[i].title){

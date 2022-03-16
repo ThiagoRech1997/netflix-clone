@@ -2,7 +2,6 @@ import React from "react";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import tmdb from "./../../services/tmdb";
 import MovieRow from "./../../components/MovieRow";
 import FeaturedMovie from "./../../components/FeaturedMovie";
 import Header from "./../../components/Header";
@@ -13,29 +12,20 @@ import { handlePopularMovie } from './../../store/actions/movieActions'
 export default () => {
   const dispatch = useDispatch();
 
-  const [featuredData, setFeaturedData] = useState(null)
   const [blackHeader, setBlackHeader] = useState(false)
 
   const popularMovie = useSelector((state) => state.popularMovie)
   const { loading, movieList } = popularMovie
+  const featuredMovie = useSelector((state) => state.featuredMovie)
+  const { featuredData } = featuredMovie
 
   useEffect(() => {
-  },[dispatch])
+  },[dispatch, featuredData])
 
   useEffect(()=>{
-    const loadAll = async () => {
-      dispatch(handlePopularMovie())
-
-      let originals = movieList.filter(i=>i.slug === "originals")
-      let randomChosen = Math.floor(Math.random() * (originals[0].items.results.length - 1))
-      let chosen = originals[0].items.results[randomChosen]
-      let chosenInfo = tmdb.getMovieInfo(chosen.id, 'tv')
-      setFeaturedData(chosenInfo)
-      console.log(featuredData)
-    }
-    loadAll()
-  },[featuredData])
-
+    dispatch(handlePopularMovie())
+  },[dispatch])
+console.log(movieList)
   useEffect(()=>{
     const scrollListener = () => {
       if(window.scrollY > 10){

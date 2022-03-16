@@ -6,13 +6,14 @@ import { Link } from "react-router-dom"
 
 import './style.css'
 
-import { resetStateTorrents } from './../../store/actions/torrentActions'
+import { stopTorrent, resetStateTorrents } from './../../store/actions/torrentActions'
 
 export default function MovieRow({title, items}){
     const dispatch = useDispatch();
     const [scrollX, setScrollX] = useState(0)
 
     useEffect(() => {
+        dispatch(stopTorrent());
         dispatch(resetStateTorrents())
     }, [dispatch])
     

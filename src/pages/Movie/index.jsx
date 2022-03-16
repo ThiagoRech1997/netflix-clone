@@ -10,7 +10,7 @@ import "./style.css"
 import "bootstrap/dist/css/bootstrap.min.css"
 
 import { handleMediaType } from './../../store/actions/mediaTypeActions'
-import { getTorrent } from './../../store/actions/torrentActions'
+import { playTorrent, stopTorrent } from './../../store/actions/torrentActions'
 
 export default function Movie(){
     const { id, name } = useParams()
@@ -18,6 +18,7 @@ export default function Movie(){
 
     const [options, setOptions] = useState([]);
     const [torrent, setTorrent] = useState("undefined");
+    const [play, setPlay] = useState(false);
     const [magnetLink, setMagnetLink] = useState({magnet: ""})
     let genres = []
 
@@ -30,7 +31,8 @@ export default function Movie(){
     
 
     useEffect(() => {
-        torrentApi.get("stop")
+        dispatch(stopTorrent());
+        setPlay(false);
     }, [])
 
     useEffect(()=>{
@@ -53,20 +55,6 @@ export default function Movie(){
         }
     }, [torrents])
 
-    function handleTorrentList(){
-        console.log(torrents)
-        if (torrents?.length > 0) {
-            const data = torrents.map((item, index) => ({
-                key: index,
-                title: item.size + " " + item.seeds + " " + item.title,
-                value: item.magnet,
-            }));
-            setOptions(data);
-            setTorrent(data[0].title)
-            setMagnetLink({ magnet: data[0].value })
-        }
-    }
-
     // eslint-disable-next-line react-hooks/exhaustive-deps
     function handleSetGenresList(){
         for(let i in movieInfo.genres){
@@ -82,7 +70,7 @@ export default function Movie(){
         }
         console.log(torrent)
         console.log(magnetLink)
-        torrentApi.get(`start?magnet=${magnetLink.magnet}`)
+        dispatch(playTorrent(magnetLink.magnet, setPlay));
     }
 
     return(

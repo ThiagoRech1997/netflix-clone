@@ -1,13 +1,21 @@
 import React, { useState, useEffect } from "react"
+import { useDispatch, useSelector } from "react-redux"
 import { NavigateBefore } from "@material-ui/icons"
 import { NavigateNext } from "@material-ui/icons"
 import { Link } from "react-router-dom"
 
 import './style.css'
 
+import { stopTorrent, resetStateTorrents } from './../../store/actions/torrentActions'
+
 export default function MovieRow({title, items}){
+    const dispatch = useDispatch();
     const [scrollX, setScrollX] = useState(0)
-    const [midia, setMidia] = useState("")
+
+    useEffect(() => {
+        dispatch(stopTorrent());
+        dispatch(resetStateTorrents())
+    }, [dispatch])
     
     const handleLeftArrow = () => {
         let x = scrollX + Math.round(window.innerWidth / 2)
@@ -40,7 +48,9 @@ export default function MovieRow({title, items}){
                     {items.results.length > 0 && items.results.map((item, key) =>(
                         <div key={key} className="movieRow--item">
                             <Link to={`/watch/${item.id}/${item.original_title}`}>
-                                <img src={`https://image.tmdb.org/t/p/w300${item.poster_path}`} alt={item.original_title}/>
+                                <img src={`https://image.tmdb.org/t/p/w300${item.poster_path}`} 
+                                alt={item.original_title} 
+                                />
                             </Link>
                         </div>
                     ))}

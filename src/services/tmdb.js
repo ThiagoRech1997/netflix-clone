@@ -8,6 +8,7 @@ const basicFetch = async (endpoint) => {
     return json
 }
 
+// eslint-disable-next-line import/no-anonymous-default-export
 export default {
     getHomeList: async () => {
         return [
@@ -54,19 +55,19 @@ export default {
         ]
     },
     getMovieInfo: async (movieId, type) => {
-        let info = {}
+        let info = await basicFetch(`/${type}/${movieId}?language=pt-BR&api_key=${API_KEY}`)
 
-        if(movieId) {
-            switch(type){
-                case 'movie':
-                    info = await basicFetch(`/movie/${movieId}?language=pt-BR&api_key=${API_KEY}`)
-                break
-                case 'tv':
-                    info = await basicFetch(`/tv/${movieId}?language=pt-BR&api_key=${API_KEY}`)
-                break
-                default: info = null; break
-            }
-        }
+        //if(movieId) {
+        //    switch(type){
+        //        case 'movie':
+        //            info = await basicFetch(`/movie/${movieId}?language=pt-BR&api_key=${API_KEY}`)
+        //        break
+        //        case 'tv':
+        //            info = await basicFetch(`/tv/${movieId}?language=pt-BR&api_key=${API_KEY}`)
+        //        break
+        //        default: info = null; break
+        //    }
+        //}
         return info
     }
 }

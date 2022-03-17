@@ -4,7 +4,6 @@ import { Link } from "react-router-dom"
 import "./style.css"
 
 export default function FeaturedMovie({item}){
-    console.log(item)
 
     let firstDate = new Date(item.first_air_date)
     let genres = []

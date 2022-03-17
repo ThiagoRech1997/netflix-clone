@@ -19,13 +19,10 @@ export default () => {
   const featuredMovie = useSelector((state) => state.featuredMovie)
   const { featuredData } = featuredMovie
 
-  useEffect(() => {
-  },[dispatch, featuredData])
-
   useEffect(()=>{
     dispatch(handlePopularMovie())
   },[dispatch])
-console.log(movieList)
+  
   useEffect(()=>{
     const scrollListener = () => {
       if(window.scrollY > 10){

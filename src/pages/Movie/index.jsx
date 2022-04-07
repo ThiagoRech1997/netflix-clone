@@ -79,7 +79,7 @@ export default function Movie(){
                 }}>
                     <div className="movie--vertical">
                         <div className="movie--horizontal">
-                            <img src={`https://image.tmdb.org/t/p/w300${movieInfo.poster_path}`} alt={movieInfo.original_title}/>
+                            <img src={`https://image.tmdb.org/t/p/original${movieInfo.poster_path}`} alt={movieInfo.original_title}/>
                             <div className="movie--details">
                                 <div className="movie--title">{movieInfo.title !== "" ? movieInfo.title : movieInfo.original_title}</div>
                                 <div className="movie--info">

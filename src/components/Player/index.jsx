@@ -9,7 +9,7 @@ export default class Player extends React.Component {
       poster: "",
       sources: [{
         type: "video/mp4",
-        src: "http://172.16.0.16:3001/stream"
+        src: "http://localhost:3001/stream"
       }],
       subtitles: [{
           language: 'pt-br',

@@ -15,7 +15,7 @@ export default () => {
   const [blackHeader, setBlackHeader] = useState(false)
 
   const popularMovie = useSelector((state) => state.popularMovie)
-  const { loading, movieList } = popularMovie
+  const { movieList } = popularMovie
   const featuredMovie = useSelector((state) => state.featuredMovie)
   const { featuredData } = featuredMovie
 
@@ -53,7 +53,7 @@ export default () => {
       </footer>
       {movieList.length <= 0 &&
       <div className="loading">
-        <img src="https://media.filmelier.com/noticias/br/2020/03/Netflix_LoadTime.gif"/>
+        <img src="https://media.filmelier.com/noticias/br/2020/03/Netflix_LoadTime.gif" alt="load-list"/>
       </div>
       }
     </div>

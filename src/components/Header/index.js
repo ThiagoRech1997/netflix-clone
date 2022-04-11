@@ -15,7 +15,8 @@ export default ({black}) => {
     const genresList = useSelector((state) => state.genresList)
     const { genres } = genresList.genres
 
-    console.log(genres)
+    const getContentList = useSelector((state) => state.getContentList)
+    const { contentList } = getContentList
 
     function handleGenres(midia) {
         dispatch(handleGenresList(midia))
@@ -25,7 +26,7 @@ export default ({black}) => {
         <header className={black ? 'black' : ''}>
             <div className="header--optionsLeft">
                 <div className="header--logo">
-                    <a href="/">
+                    <a href="/watch">
                         <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg" alt='logo'/>
                     </a>
                 </div>

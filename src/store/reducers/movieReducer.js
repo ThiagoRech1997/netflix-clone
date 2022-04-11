@@ -1,7 +1,8 @@
-import { ADD_MOVIE_ITEM, GET_MOVIE_FAIL } from './../types/movieTypes'
+import { ADD_MOVIE_ITEM, GET_MOVIE_FAIL, GET_MOVIE_REQUEST, GET_MOVIE } from './../types/movieTypes'
 import { ADD_POPULAR_MOVIE_REQUEST, ADD_POPULAR_MOVIE, ADD_POPULAR_MOVIE_FAILL } from './../types/movieTypes'
 import { FEATURED_MOVIE_REQUEST, FEATURED_MOVIE, FEATURED_MOVIE_FAIL } from './../types/movieTypes'
 import { GENRES_MOVIE_REQUEST, GENRES_MOVIE, GENRES_MOVIE_FAIL } from './../types/movieTypes'
+import { GET_LIST_REQUEST, GET_LIST, GET_LIST_FAIL } from './../types/movieTypes'
 
 export const movieItemReducer = (
     state = { movieInfo: [] },
@@ -99,5 +100,53 @@ export const genresListReducer = (
             }
         default:
             return state
+    }
+}
+
+export const getContentListReducer = (
+    state = { contentList: [] },
+    action
+) => {
+    switch(action.type){
+        case GET_MOVIE_REQUEST:
+            return {
+                ...state,
+                contentList: []
+            }
+        case GET_MOVIE:
+            return {
+                ...state,
+                contentList: action.payload
+            }
+        case GET_MOVIE_FAIL:
+            return {
+                ...state,
+                message: action.payload.message
+            }
+        default: return state
+    }
+}
+
+export const getListReducer = (
+    state = { loadList: '' },
+    action
+) => {
+    switch(action.type){
+        case GET_LIST_REQUEST:
+            return {
+                ...state,
+                loadList: ''
+            }
+        case GET_LIST:
+            return {
+                ...state,
+                loadList: action.payload
+            }
+        case GET_LIST_FAIL:
+            return {
+                ...state,
+                message: action.payload.message
+            }
+        default: return state
     }
 }

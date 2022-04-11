@@ -1,4 +1,3 @@
-const API_KEY = '7888cb0984321aa8c34ab2f3ad8606a9'
 const API_BASE = 'https://api.themoviedb.org/3'
 
 
@@ -61,5 +60,11 @@ export default {
     getGenresList: async (midia) => {
         let info = await basicFetch(`/genre/${midia}/list?language=${process.env.REACT_APP_TMDB_LANGUAGE}&api_key=${process.env.REACT_APP_TMDB_API_KEY}`)
         return info
+    },
+    getContentList: async (media, genres) => {
+        return {
+            title: genres.name,
+            items: await basicFetch(`/discover/${media}?with_genres=${genres.id}&language=${process.env.REACT_APP_TMDB_LANGUAGE}&api_key=${process.env.REACT_APP_TMDB_API_KEY}`)
+        }
     }
 }

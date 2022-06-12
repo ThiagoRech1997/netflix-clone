@@ -14,7 +14,7 @@ export default {
             {
                 slug: 'originals',
                 title: 'Originais da Netflix',
-                items: await basicFetch(`/discover/tv?with_network=213&language=${process.env.REACT_APP_TMDB_LANGUAGE}&api_key=${process.env.REACT_APP_TMDB_API_KEY}`)
+                items: await basicFetch(`/discover/tv?with_networks=213&language=${process.env.REACT_APP_TMDB_LANGUAGE}&api_key=${process.env.REACT_APP_TMDB_API_KEY}`)
             },
             {
                 slug: 'trending',

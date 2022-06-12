@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react"
-import { useDispatch, useSelector } from "react-redux"
+import { useDispatch } from "react-redux"
 import { NavigateBefore } from "@material-ui/icons"
 import { NavigateNext } from "@material-ui/icons"
 import { Link } from "react-router-dom"

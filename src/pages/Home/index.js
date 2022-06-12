@@ -53,7 +53,7 @@ export default () => {
         ))}
       </section>
       }
-      {loadList != '' && 
+      {loadList !== '' && 
         <section className="lists">
           {contentList.map((item, key) => (
             <MovieRow key={key} title={item.title} items={item.items} />

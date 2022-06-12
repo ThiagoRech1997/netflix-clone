@@ -15,9 +15,6 @@ export default ({black}) => {
     const genresList = useSelector((state) => state.genresList)
     const { genres } = genresList.genres
 
-    const getContentList = useSelector((state) => state.getContentList)
-    const { contentList } = getContentList
-
     function handleGenres(midia) {
         dispatch(handleGenresList(midia))
     }

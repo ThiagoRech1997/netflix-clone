@@ -57,12 +57,12 @@
     opacity: 0.7;
 }
 .featured--watchbutton {
-    background-color: #FFF;
-    color: #000;
+    background-color: #FFF !important;
+    color: #000 !important;
 }
 .featured--mylistbutton {
-    background-color: #333;
-    color: #FFF;
+    background-color: #333 !important;
+    color: #FFF !important;
 }
 .featured--genres {
     margin-top: 15px;

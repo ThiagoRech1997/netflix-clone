@@ -1,7 +1,7 @@
 import { combineReducers } from "redux";
 
 import { mediaTypeReducer } from "./mediaTypeReducer"
-import { movieItemReducer, popularMovieReducer, featuredMovieReducer, genresListReducer } from "./movieReducer"
+import { movieItemReducer, popularMovieReducer, featuredMovieReducer, genresListReducer, getContentListReducer, getListReducer } from "./movieReducer"
 import { torrentListReducer } from './torrentReducer'
 
 export const reducers = combineReducers({
@@ -11,4 +11,6 @@ export const reducers = combineReducers({
     featuredMovie: featuredMovieReducer,
     torrentList: torrentListReducer,
     genresList: genresListReducer,
+    getContentList: getContentListReducer,
+    getList: getListReducer,
 });

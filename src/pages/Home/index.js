@@ -18,6 +18,10 @@ export default () => {
   const { movieList } = popularMovie
   const featuredMovie = useSelector((state) => state.featuredMovie)
   const { featuredData } = featuredMovie
+  const getList = useSelector((state) => state.getList)
+  const { loadList } = getList
+  const getContentList = useSelector((state) => state.getContentList)
+  const { contentList } = getContentList
 
   useEffect(()=>{
     dispatch(handlePopularMovie())
@@ -43,11 +47,19 @@ export default () => {
       {featuredData &&
         <FeaturedMovie item={featuredData} />
       }
-      <section className="lists">
+      {loadList === '' && <section className="lists">
         {movieList.map((item, key) => (
           <MovieRow key={key} title={item.title} items={item.items} />
         ))}
       </section>
+      }
+      {loadList !== '' && 
+        <section className="lists">
+          {contentList.map((item, key) => (
+            <MovieRow key={key} title={item.title} items={item.items} />
+          ))}
+        </section>
+      }
       <footer>
         Projeto feito em ReactJS utilizando a API da plataforma ""The Movie Database""
       </footer>
